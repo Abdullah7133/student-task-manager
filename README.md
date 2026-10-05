@@ -1,4 +1,4 @@
-# Student Task Manager
+# Student Task Manager Tracker
 
 A simple web application to manage daily student tasks and assignments.
 
