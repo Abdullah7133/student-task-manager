@@ -108,3 +108,17 @@ li:hover {
     gap: 8px;
   }
 }
+/* Style for task delete buttons */
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
