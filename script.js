@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskDescInput = document.getElementById("task-desc");
   const addTaskBtn = document.getElementById("add-task-btn");
   const taskList = document.getElementById("task-list");
+  const taskSearchInput = document.getElementById("task-search");
 
-  // Load existing tasks from localStorage or initialize an empty array
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let searchQuery = "";
 
-  // Render tasks on initial load
   renderTasks();
 
   addTaskBtn.addEventListener("click", () => {
@@ -25,10 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
       tasks.push(newTask);
       saveAndRender();
       
-      // Clear input fields
       taskTitleInput.value = "";
       taskDescInput.value = "";
     }
+  });
+
+  taskSearchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value.toLowerCase();
+    renderTasks();
   });
 
   function saveAndRender() {
@@ -39,15 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTasks() {
     taskList.innerHTML = "";
     
-    tasks.forEach(task => {
+    const filteredTasks = tasks.filter(task => 
+      task.title.toLowerCase().includes(searchQuery) || 
+      task.description.toLowerCase().includes(searchQuery)
+    );
+
+    filteredTasks.forEach(task => {
       const li = document.createElement("li");
       
-      // Apply completed class if the task is finished
       if (task.completed) {
         li.classList.add("completed");
       }
 
-      // 1. Checkbox for completion status
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.classList.add("task-checkbox");
@@ -57,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
         saveAndRender();
       });
 
-      // 2. Container for text (title and description)
       const textContainer = document.createElement("div");
       textContainer.classList.add("task-content");
 
@@ -71,9 +77,18 @@ document.addEventListener("DOMContentLoaded", () => {
         textContainer.appendChild(descEl);
       }
 
-      // Append elements to list item
+      // Delete button logic
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.addEventListener("click", () => {
+        tasks = tasks.filter(t => t.id !== task.id);
+        saveAndRender();
+      });
+
       li.appendChild(checkbox);
       li.appendChild(textContainer);
+      li.appendChild(deleteBtn);
       taskList.appendChild(li);
     });
   }
