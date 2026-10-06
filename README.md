@@ -1,13 +1,17 @@
 # Student Task Manager Application
- 
 
-A simple web application to manage daily student tasks and assignments.
+A web application to manage daily student tasks, descriptions, and deletions.
+
+## Features
+- Add task titles and descriptions.
+- Delete completed tasks.
+- Responsive design for mobile and desktop.
 
 ## Files
-- `index.html` - HTML structure
-- `style.css` - Application styling
-- `script.js` - Dynamic task management logic
-- `README.md` - Project documentation
+- `index.html` - HTML structure[cite: 2]
+- `style.css` - Application styling[cite: 2]
+- `script.js` - Dynamic task management logic[cite: 2]
+- `README.md` - Project documentation[cite: 2]
 
 ## Setup
-Open `index.html` in any web browser to view the application.
+Open `index.html` in any web browser to view the application[cite: 2].
