@@ -10,3 +10,4 @@ A simple web application to manage daily student tasks and assignments.
 
 ## Setup
 Open `index.html` in any web browser to view the application.
+Hello World
