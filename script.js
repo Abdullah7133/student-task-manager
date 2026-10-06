@@ -22,10 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
         contentDiv.appendChild(descElem);
       }
 
+      // Create a delete button for the task
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.addEventListener("click", () => {
+        taskList.removeChild(li);
+      });
+
       li.appendChild(contentDiv);
+      li.appendChild(deleteBtn);
       taskList.appendChild(li);
 
-      // Clear inputs
+      // Reset input fields
       taskTitleInput.value = "";
       taskDescInput.value = "";
     }
