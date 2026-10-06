@@ -1,110 +1,48 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background-color: #f4f6f8;
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-.container {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 25px;
-  text-align: center;
-  color: #333;
-}
-
-.task-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-input[type="text"] {
+/* Textarea styling to match the input field */
+textarea {
   flex: 1;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 15px;
   outline: none;
+  resize: vertical;
+  min-height: 44px;
 }
 
-input[type="text"]:focus {
+textarea:focus {
   border-color: #007bff;
 }
 
-button {
-  padding: 12px 18px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-ul {
-  list-style: none;
-  margin-top: 10px;
-}
-
+/* Update list item to align checkbox and text horizontally */
 li {
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 12px 15px;
-  margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start; /* Aligns items to the top in case of long descriptions */
+  gap: 15px; /* Adds space between the checkbox and text */
 }
 
-li:hover {
-  background-color: #eef4fa;
+/* Space out the title and description */
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-@media (max-width: 600px) {
-  body {
-    padding: 20px 10px;
-  }
+.task-content p {
+  font-size: 0.9rem;
+  color: #666;
+}
 
-  .container {
-    padding: 20px;
-  }
+/* Enlarge the checkbox slightly for better UX */
+.task-checkbox {
+  margin-top: 4px;
+  transform: scale(1.3);
+  cursor: pointer;
+}
 
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .task-form {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
+/* Acceptance Criteria: Strikethrough and faded opacity for completed tasks */
+li.completed .task-content {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
