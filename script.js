@@ -19,18 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
         id: Date.now(),
         title: titleText,
         description: descText,
-        completed: false,
+        completed: false
       };
-
+      
       tasks.push(newTask);
       saveAndRender();
-
+      
       taskTitleInput.value = "";
       taskDescInput.value = "";
     }
   });
 
-  // Listen for search input changes
   taskSearchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value.toLowerCase();
     renderTasks();
@@ -43,17 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderTasks() {
     taskList.innerHTML = "";
-
-    // Filter tasks based on search query
-    const filteredTasks = tasks.filter(
-      (task) =>
-        task.title.toLowerCase().includes(searchQuery) ||
-        task.description.toLowerCase().includes(searchQuery),
+    
+    const filteredTasks = tasks.filter(task => 
+      task.title.toLowerCase().includes(searchQuery) || 
+      task.description.toLowerCase().includes(searchQuery)
     );
 
-    filteredTasks.forEach((task) => {
+    filteredTasks.forEach(task => {
       const li = document.createElement("li");
-
+      
       if (task.completed) {
         li.classList.add("completed");
       }
@@ -80,8 +77,18 @@ document.addEventListener("DOMContentLoaded", () => {
         textContainer.appendChild(descEl);
       }
 
+      // Delete button logic
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.addEventListener("click", () => {
+        tasks = tasks.filter(t => t.id !== task.id);
+        saveAndRender();
+      });
+
       li.appendChild(checkbox);
       li.appendChild(textContainer);
+      li.appendChild(deleteBtn);
       taskList.appendChild(li);
     });
   }
